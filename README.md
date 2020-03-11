@@ -28,4 +28,4 @@ The original contributors to this project are the following full stack developer
 
 As such, for major changes, please open an issue first to discuss what you would like to change. Changes will not be made without the consent of this development team.
 
-Copyright (c) [2020] [The Witty Ravens]
+Copyright (c) [2020] [The Premium Lions]
