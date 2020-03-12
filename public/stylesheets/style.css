@@ -2,3 +2,35 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+/* .container {
+  background-image: url("../public/images/healthyeating.jpg");
+} */
+
+.navbar-header {
+  font-size: x-large;
+}
+
+label {
+  color: white;
+}
+
+input {
+  color: white;
+}
+
+/* Footer */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: lightgray;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.footer-copyright {
+  text-align: center;
+}
