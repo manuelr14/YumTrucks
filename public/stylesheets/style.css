@@ -7,6 +7,10 @@ form.login {
   background-image: url("../public/images/healthyeating.jpg");
 } */
 
+.navbar-header {
+  font-size: x-large;
+}
+
 label {
   color: white;
 }
