@@ -25,6 +25,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   background-color: lightgray;
+  color: #000000;
 }
 
 main {
