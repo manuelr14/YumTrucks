@@ -42,6 +42,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    favorite: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     zip: {
       type: DataTypes.INTEGER,
       allowNull: false,
