@@ -9,40 +9,54 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/member");
+      res.redirect("/location");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../public/location.html"));
   });
 
   app.get("/registration", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/member");
+      res.redirect("/users");
     }
     res.sendFile(path.join(__dirname, "../public/registration.html"));
   });
 
+  app.get("/login", function(req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      if (isTruckOwner(req, res)) {
+        res.redirect("/trucks");
+      } else {
+        res.redirect("/users");
+      }
+      res.sendFile(path.join(__dirname, "../public/registration.html"));
+    }
+  });
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/member", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/member.html"));
-  });
-
-  app.get("/trucks", function(req, res) {
-
-    res.sendFile(path.join(__dirname, "../public/trucks.html"));
-  });
-
-  app.get("/users", function(req, res) {
-
+  app.get("/users", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/users.html"));
   });
 
-  app.get("/results", function(req, res) {
+  app.get("/users", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/users.html"));
+  });
 
+  app.get("/trucks", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/trucks.html"));
+  });
+
+  app.get("/results", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/results.html"));
   });
 
 
-
 };
+
+function isTruckOwner(user) {
+  console.log(user);
+  // Check if user has a record with a truck_owner value of "true" and return true or false
+  return false;
+}
