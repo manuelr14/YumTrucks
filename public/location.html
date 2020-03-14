@@ -9,16 +9,17 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
+  <!-- Font Awesome Code -->
+  <script src="https://kit.fontawesome.com/5599b5ab1b.js" crossorigin="anonymous"></script>
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="./images/foodtruck.jpg">
 </head>
 
 <body>
-
-  <!-- LANDING PAGE WHERE ARE YOU -->
-  <nav class="navbar navbar-default">
+  <!-- LANDING PAGE WHERE ARE YOU? -->
+  <nav class="navbar navbar-default grey">
     <div class="container-fluid">
-      <div class="navbar-header">
+      <div class="navbar-header" class="center-align">YumTrucks
       </div>
     </div>
   </nav>
@@ -28,24 +29,33 @@
       <div class="col-md-6 col-md-offset-3">
         <h2>Welcome!<span class="member-name"></span></h2>
         
-        <form class="signup">
-          <div class="form-group">
-            <label for="exampleInputLocation1">Location</label>
-            <input type="password" class="form-control" id="password-input" placeholder="City">
+        <div class="card-panel amber">
+        <div class="area" class="hide">
+          <div id="userEntry" class="container">
+          <input id="form" class="form-control mr-sm-2" type="search" placeholder="Search City" aria-label="Search"/>
+          <button id="search" style="font-size:30px" class="fas fa-search" style="color:grey"></button>
+          <button type="button" class="btn btn-primary btn-lg" id="geolocationBtn">Current Location</button>
           </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+        </div>
+        </div>
 
       </div>
     </div>
   </div>
 
+  <div id="space"></div>
+  <!-- Footer -->
+  <footer class="page-footer grey">
+    <div class="footer-copyright">
+      <div class="container" class="grey-text text-lighten-4 right">
+        The Premium Lions 2020 ©
+      </div>
+    </div>
+  </footer>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
 </body>
 </html>
