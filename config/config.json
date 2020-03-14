@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-      "password": "18877MSca",
+      "password": "",
       "database": "food_trucksDB",
       "host": "127.0.0.1",
       "dialect": "mysql"

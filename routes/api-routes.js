@@ -14,6 +14,24 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/:truck?", (req, res) => {
+    if (req.params.truck) {
+      // Display the JSON for ONLY that character.
+      // (Note how we're using the ORM here to run our searches)
+      Truck.findOne({
+        where: {
+          routeName: req.params.truck
+        }
+      }).then(function(result) {
+        return res.json(result);
+      });
+    } else {
+      Truck.findAll().then(function(result) {
+        return res.json(result);
+      });
+    }
+  });
+
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
