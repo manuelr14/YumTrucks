@@ -58,5 +58,15 @@ $("#submit").on("click", function (event) {
   $("#menu-url").val("");
   $("#website-url").val("");
   $("#truck-name").val("");
-  
+
 });
+
+function formFields() {
+  if ($("#reg-type") === "user") {
+    $("user-field").addClass(show) || $("#truck-field").addClass(hide);
+  } else if ($("#reg-type") === "truck") {
+    $("user-field").addClass(hide) || $("#truck-field").addClass(show);
+  } else {
+    $("user-field").addClass(hide) || $("#truck-field").addClass(hide);
+  }
+}

@@ -30,7 +30,7 @@
                     <div class="row">
                         <form class="col-sm-12">
                             <div class="row">
-                                <div class="input-field col s6">
+                                <div class="input-field col s6 onchange="formFields()">
                                     <select id="reg-type">
                                         <option value="" disabled selected>I am a:</option>
                                         <option value="user">User</option>
@@ -38,7 +38,7 @@
                                     </select>
                                     <label>Registration Type</label>
                                 </div>
-                                <div class="input-field col s6">
+                                <div class="input-field col s6 user-field">
                                     <select id="favorite">
                                         <option value="" disabled selected>Trucks:</option>
                                         <option value="1">Let's Taco Bout It</option>
@@ -99,13 +99,11 @@
                                     <label for="avatar-url">Avatar URL</label>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="truck-field row">
                                 <div class="input-field col s12">
                                     <input id="menu-url" type="text" class="validate">
                                     <label for="menu-url">Menu URL</label>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="input-field col s12">
                                     <input id="website-url" type="text" class="validate">
                                     <label for="website-url">Website URL</label>
