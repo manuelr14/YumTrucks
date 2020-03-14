@@ -30,16 +30,16 @@
                     <div class="row">
                         <form class="col-sm-12">
                             <div class="row">
-                                <div class="input-field col s6">
-                                    <select>
+                                <div class="input-field col s6 onchange="formFields()">
+                                    <select id="reg-type">
                                         <option value="" disabled selected>I am a:</option>
-                                        <option value="1">User</option>
-                                        <option value="2">Truck Owner</option>
+                                        <option value="user">User</option>
+                                        <option value="truck">Truck</option>
                                     </select>
                                     <label>Registration Type</label>
                                 </div>
-                                <div class="input-field col s6">
-                                    <select>
+                                <div class="input-field col s6 user-field">
+                                    <select id="favorite">
                                         <option value="" disabled selected>Trucks:</option>
                                         <option value="1">Let's Taco Bout It</option>
                                         <option value="2">Waffle House</option>
@@ -49,18 +49,18 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input id="first_name" type="text" class="validate">
-                                    <label for="first_name">First Name</label>
+                                    <input id="first-name" type="text" class="validate">
+                                    <label for="first-name">First Name</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="last_name" type="text" class="validate">
-                                    <label for="last_name">Last Name</label>
+                                    <input id="last-name" type="text" class="validate">
+                                    <label for="last-name">Last Name</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="truck_name" type="text" class="validate">
-                                    <label for="truck_name">Truck Name</label>
+                                    <input id="truck-name" type="text" class="validate">
+                                    <label for="truck-name">Truck Name</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -99,13 +99,11 @@
                                     <label for="avatar-url">Avatar URL</label>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="truck-field row">
                                 <div class="input-field col s12">
                                     <input id="menu-url" type="text" class="validate">
                                     <label for="menu-url">Menu URL</label>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="input-field col s12">
                                     <input id="website-url" type="text" class="validate">
                                     <label for="website-url">Website URL</label>
@@ -113,8 +111,8 @@
                             </div>
                             <div class="row">
                                 <div class="col s2 offset-s10">
-                                    <button class="btn waves-effect waves-light submit-template blue-grey darken-1"
-                                        type="submit" id="submit-template" name="action">Submit
+                                    <button class="btn waves-effect waves-light blue-grey darken-1"
+                                        type="submit" id="submit" name="action">Submit
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>
