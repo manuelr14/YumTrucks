@@ -20,35 +20,35 @@ module.exports = function(sequelize, DataTypes) {
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     avatar: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     street: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     favorite: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     zip: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
     },
 
   });
