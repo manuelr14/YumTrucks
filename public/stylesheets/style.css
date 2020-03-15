@@ -3,10 +3,6 @@ form.login {
   margin-top: 50px;
 }
 
-/* .container {
-  background-image: url("../public/images/healthyeating.jpg");
-} */
-
 .navbar-header {
   font-size: x-large;
 }
@@ -37,8 +33,9 @@ h2 {
   text-align: center;
 }
 
-img {
-  
+#restart {
+  float: right;
+  margin-top: 12px;
 }
 
 /* Footer */
