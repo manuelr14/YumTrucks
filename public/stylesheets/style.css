@@ -33,6 +33,14 @@ input {
   /* margin-bottom: 1000px; */
 }
 
+h2 {
+  text-align: center;
+}
+
+img {
+  
+}
+
 /* Footer */
 body {
   display: flex;
