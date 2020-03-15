@@ -17,7 +17,7 @@ $("#submit").on("click", function (event) {
     state: $("#state").val().trim(),
     zip: $("#zip").val().trim(),
     favorite: favorite, 
-    avatar: $("#avatar-url").val().trim(),
+    avatar: $("#avatar-url").val().trim()
   };
 
   let newTruck = {
@@ -32,7 +32,7 @@ $("#submit").on("click", function (event) {
     truck_name: $("#truck-name").val().trim(),
     avatar: $("#avatar-url").val().trim(),
     menu: $("#menu-url").val().trim(),
-    website: $("#website-url").val().trim(),
+    website: $("#website-url").val().trim()
   };
 
   if ($("#reg-type") === "user") {
