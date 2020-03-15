@@ -25,6 +25,7 @@
   </nav>
 
   <div class="container">
+    <span><img class="responsive-img" src="../public/images/healthyeating.jpg"></span>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h2>Welcome!<span class="member-name"></span></h2>
@@ -32,9 +33,11 @@
         <div class="card-panel amber">
         <div class="area" class="hide">
           <div id="userEntry" class="container">
-          <input id="form" class="form-control mr-sm-2" type="search" placeholder="Search City" aria-label="Search"/>
-          <button id="search" style="font-size:30px" class="fas fa-search" style="color:grey"></button>
-          <button type="button" class="btn btn-primary btn-lg" id="geolocationBtn">Current Location</button>
+          <input id="address" class="form-control mr-sm-2" type="search" placeholder="Address" aria-label="Search"/>
+          <input id="truckCity" class="form-control mr-sm-2" type="search" placeholder="Search City" aria-label="Search"/>
+          <input id="zipCode" class="form-control mr-sm-2" type="search" placeholder="Zip Code" aria-label="Search"/>
+          <!-- <button id="search" style="font-size:30px" class="fas fa-search" style="color:grey"></button> -->
+          <button type="button" class="btn btn-primary btn-lg" id="searchBtn">Search</button>
           </div>
         </div>
         </div>
@@ -44,6 +47,9 @@
   </div>
 
   <div id="space"></div>
+  
+  
+  
   <!-- Footer -->
   <footer class="page-footer grey">
     <div class="footer-copyright">
@@ -53,9 +59,20 @@
     </div>
   </footer>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
+  <script>
+    $(function() {
+      $("#searchBtn").on("click", function() {
+        let city = $("#truckCity").val();
+        if (city.length) {
+          $.get(`/api/search/${city}`)
+        } else {
+          alert("You must type a city!");
+        }
+      })
+    })
+  </script>
 </body>
 </html>
