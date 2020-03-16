@@ -16,7 +16,7 @@ $("#submit").on("click", function (event) {
     city: $("#city").val().trim(),
     state: $("#state").val().trim(),
     zip: $("#zip").val().trim(),
-    favorite: favorite, 
+    favorite: favorite,
     avatar: $("#avatar-url").val().trim(),
   };
 
@@ -36,12 +36,12 @@ $("#submit").on("click", function (event) {
   };
 
   if ($("#reg-type") === "user") {
-    $.post("/api/new/user", newUser) 
+    $.post("/api/new/user", newUser)
       .then(data => {
         console.log(data);
       });
   } else if ($("#reg-type") === "truck") {
-    $.post("/api/new/truck", newTruck) 
+    $.post("/api/new/truck", newTruck)
       .then(data => {
         console.log(data);
       });
@@ -60,6 +60,7 @@ $("#submit").on("click", function (event) {
   $("#truck-name").val("");
 
 });
+
 
 function formFields() {
   if ($("#reg-type") === "user") {

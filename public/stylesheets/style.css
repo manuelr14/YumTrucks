@@ -19,19 +19,16 @@ input {
   color: black;
 }
 
-#search {
+/* #search {
   border-radius: 24px;
   padding: 5px;
-  /* position: absolute; */
   float: right;
   background-color: grey;
   width: 42px;
   height: 42px;
-  /* margin-left: 800px; */
   margin-left: 5px;
   margin-right: 10px;
-  /* margin-bottom: 1000px; */
-}
+} */
 
 /* Footer */
 body {
@@ -48,4 +45,9 @@ main {
 
 .footer-copyright {
   text-align: center;
+}
+
+.heading {
+  text-align: center;
+  color: white;
 }

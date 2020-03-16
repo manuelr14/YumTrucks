@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Passport Authentication</title>
+    <title>User Registration</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
@@ -16,21 +16,23 @@
 
 <body>
     <nav class="navbar navbar-default grey">
-        <div class="container-fluid">
-          <div class="navbar-header" class="center-align">YumTrucks
-          </div>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"><i class="material-icons">fastfood</i>YumTrucks</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="search.html"><i class="material-icons">search</i></a></li>
+            </ul>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container blue-grey darken-1">
         <div class="row">
             <div class="col-sm-12">
-                
-                <div class="container white">
+                <h2><span class="heading">Register</span></h2>
+                <div class="container amber">
                     <div class="row">
                         <form class="col-sm-12">
                             <div class="row">
-                                <div class="input-field col s6 onchange="formFields()">
+                                <div class="input-field col s6">
                                     <select id="reg-type">
                                         <option value="" disabled selected>I am a:</option>
                                         <option value="user">User</option>
@@ -111,8 +113,8 @@
                             </div>
                             <div class="row">
                                 <div class="col s2 offset-s10">
-                                    <button class="btn waves-effect waves-light blue-grey darken-1"
-                                        type="submit" id="submit" name="action">Submit
+                                    <button class="btn waves-effect waves-light blue-grey darken-1" type="submit"
+                                        id="submit" name="action">Submit
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>
@@ -122,9 +124,10 @@
                 </div>
             </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script type="text/javascript" src="js/registration.js"></script>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/registration.js"></script>
 
 </body>
 

@@ -2,60 +2,84 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
+  <title>Where Are You?</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href="stylesheets/style.css" rel="stylesheet">
-  <!-- Font Awesome Code -->
-  <script src="https://kit.fontawesome.com/5599b5ab1b.js" crossorigin="anonymous"></script>
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="./images/foodtruck.jpg">
 </head>
 
 <body>
-  <!-- LANDING PAGE WHERE ARE YOU? -->
   <nav class="navbar navbar-default grey">
-    <div class="container-fluid">
-      <div class="navbar-header" class="center-align">YumTrucks
-      </div>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><i class="material-icons">fastfood</i>YumTrucks</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="search.html"><i class="material-icons">search</i></a></li>
+      </ul>
     </div>
   </nav>
 
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome!<span class="member-name"></span></h2>
-        
+      <div class="col-md-6 col-md-offset-3 blue-grey darken-1">
+        <h2><span class="heading">Where are you?</span></h2>
+
         <div class="card-panel amber">
-        <div class="area" class="hide">
-          <div id="userEntry" class="container">
-          <input id="form" class="form-control mr-sm-2" type="search" placeholder="Search City" aria-label="Search"/>
-          <button id="search" style="font-size:30px" class="fas fa-search" style="color:grey"></button>
-          <button type="button" class="btn btn-primary btn-lg" id="geolocationBtn">Current Location</button>
+            <div id="userEntry" class="container">
+              <form class="col-sm-12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="street" type="text" class="validate">
+                    <label for="street">Street</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <input id="city" type="text" class="validate">
+                    <label for="city">City</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <input id="state" type="text" class="validate">
+                    <label for="state">State</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <input id="zip" type="text" class="validate">
+                    <label for="zip">Zip Code</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s2 offset-s10">
+                    <button class="btn waves-effect waves-light blue-grey darken-1" type="submit" id="submit"
+                      name="action">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div id="space"></div>
+      <!-- Footer -->
+      <footer class="page-footer grey">
+        <div class="footer-copyright">
+          <div class="container" class="grey-text text-lighten-4 right">
+            The Premium Lions 2020 ©
+          </div>
         </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div id="space"></div>
-  <!-- Footer -->
-  <footer class="page-footer grey">
-    <div class="footer-copyright">
-      <div class="container" class="grey-text text-lighten-4 right">
-        The Premium Lions 2020 ©
-      </div>
-    </div>
-  </footer>
+      </footer>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/signup.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/signup.js"></script>
 </body>
+
 </html>
