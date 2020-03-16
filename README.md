@@ -4,7 +4,16 @@ Back-end MVC App
 
 ### Description
 
+This food truck application was created using a third-party API and and ORM.
+
+### User Story
+AS A food truck owner or foodie
+I want to be able to search for food trucks and/or foodies in my area to connect more people
+SO that i can grow my business or find new truck recommendations
+
 ### Installation
+
+Clone to your local machine and open in your favorite code editor to check it out! Or, visit the deployed version at the following link:
 
 ### Link
 
@@ -14,9 +23,15 @@ Back-end MVC App
 * Materialize
 * JavaScript
 * jQuery
-* AJAX
+* Node.js
+* Express
+* MySQL
+* Sequelize
+* Passport
 
 ### Notes
+
+We started building this application in an effort to achieve a minimum viable product (MVP). To that end, we hope to achieve some future dated development ideas that will enhance the user engagement with the application.
 
 ### Contributors
 
