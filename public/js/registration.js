@@ -1,13 +1,16 @@
 $(document).ready(function () {
   $('select').formSelect();
+  applyHiddenClasses();
+  $("#reg-type").on("change", (e) => {applyHiddenClasses(e);});
 });
 
 $("#submit").on("click", function (event) {
   event.preventDefault();
+  const regType = M.FormSelect.getInstance($("#reg-type")).el.value;
 
   let favorite = $("#favorite").val();
 
-  let newUser = {
+  let newEntity = {
     first_name: $("#first-name").val().trim(),
     last_name: $("#last-name").val().trim(),
     email: $("#email").val().trim(),
@@ -17,56 +20,51 @@ $("#submit").on("click", function (event) {
     state: $("#state").val().trim(),
     zip: $("#zip").val().trim(),
     favorite: favorite, 
-    avatar: $("#avatar-url").val().trim()
-  };
-
-  let newTruck = {
-    first_name: $("#first-name").val().trim(),
-    last_name: $("#last-name").val().trim(),
-    email: $("#email").val().trim(),
-    password: $("#password").val().trim(),
-    street: $("#street").val().trim(),
-    city: $("#city").val().trim(),
-    state: $("#state").val().trim(),
-    zip: $("#zip").val().trim(),
-    truck_name: $("#truck-name").val().trim(),
     avatar: $("#avatar-url").val().trim(),
-    menu: $("#menu-url").val().trim(),
-    website: $("#website-url").val().trim()
+    truck_name: $("#truck-name").val().trim() || "",
+    menu: $("#menu-url").val().trim() || "",
+    website: $("#website-url").val().trim() || ""
   };
 
-  if ($("#reg-type") === "user") {
-    $.post("/api/new/user", newUser) 
+  if (regType === "user") {
+    $.post("/api/new/user", newEntity) 
       .then(data => {
         console.log(data);
+        $("#reg-form").trigger("reset");
+        window.location = "/location";
+      })
+      .catch(error => {
+        console.log(error);
       });
-  } else if ($("#reg-type") === "truck") {
-    $.post("/api/new/truck", newTruck) 
+  } else if (regType === "truck") {
+    $.post("/api/new/truck", newEntity) 
       .then(data => {
         console.log(data);
+        $("#reg-form").trigger("reset");
+        window.location = "/location";
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 
-  $("#first-name").val("");
-  $("#last-name").val("");
-  $("#email").val("");
-  $("#street").val("");
-  $("#city").val("");
-  $("#state").val("");
-  $("#zip").val("");
-  $("#avatar-url").val("");
-  $("#menu-url").val("");
-  $("#website-url").val("");
-  $("#truck-name").val("");
-
 });
 
-function formFields() {
-  if ($("#reg-type") === "user") {
-    $("user-field").addClass(show) || $("#truck-field").addClass(hide);
-  } else if ($("#reg-type") === "truck") {
-    $("user-field").addClass(hide) || $("#truck-field").addClass(show);
+function applyHiddenClasses(e) {
+  const selectedRegType = e ? e.target.value : "";
+  $(".user-field").removeClass("show");
+  $(".truck-field").removeClass("show");
+  $(".user-field").removeClass("hide");
+  $(".truck-field").removeClass("hide");
+
+  if (selectedRegType === "user") {
+    $(".user-field").addClass("show");
+    $(".truck-field").addClass("hide");
+  } else if (selectedRegType === "truck") {
+    $(".user-field").addClass("hide");
+    $(".truck-field").addClass("show");
   } else {
-    $("user-field").addClass(hide) || $("#truck-field").addClass(hide);
+    $(".user-field").addClass("hide");
+    $(".truck-field").addClass("hide");
   }
 }
