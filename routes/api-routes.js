@@ -14,6 +14,15 @@ module.exports = function (app) {
     });
   });
 
+  //we need a route identical to the one above that has "/api/trucks/login" as the url
+  app.post("/api/trucks/login", passport.authenticate("trucks-local"), function (req, res) {
+    // Sending back a password, even a hashed password, isn't a good idea
+    res.json({
+      email: req.user.email,
+      id: req.user.id
+    });
+  });
+
   app.get("/api/:truck?", (req, res) => {
     if (req.params.truck) {
       // Display the JSON for ONLY that character.
