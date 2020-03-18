@@ -3,6 +3,10 @@ $(document).ready(function() {
     var loginForm = $("form.login");
     var emailInput = $("input#email-input");
     var passwordInput = $("input#password-input");
+
+    //Get true/false variable from a radio input that asks whether or not the user is logging in as a truck 
+    var isTruck = false;
+
   
     // When the form is submitted, we validate there's an email and password entered
     loginForm.on("submit", function(event) {
@@ -24,12 +28,19 @@ $(document).ready(function() {
   
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(email, password) {
-      $.post("/api/login", {
+      //determine wiether 
+      var url = isTruck ? "/api/trucks/login" : "/api/login";
+      $.post(url, {
         email: email,
         password: password
       })
         .then(function() {
-          window.location.replace("/members");
+          ///if isTruck
+          window.location.replace("/users");
+
+         //else
+         //redirect to /trucks instead 
+         
           // If there's an error, log the error
         })
         .catch(function(err) {
@@ -37,3 +48,37 @@ $(document).ready(function() {
         });
     }
   });  
+
+
+  $("#submit").on("click", function (event) {
+    event.preventDefault(); 
+    
+    let regType = $("#reg-type").val();
+  
+    let userLogin = {
+      username: $("#email").val().trim(),
+      password: $("#password").val().trim(),
+    };
+  
+    if (regType === "user") {
+      $.post("/api/login/user", userLogin) 
+        .then(data => {
+          console.log(data);
+          $(".login").trigger("reset");
+          window.location = "/location";
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else if (regType === "truck") {
+      $.post("/api/login/truck", userLogin) 
+        .then(data => {
+          console.log(data);
+          $(".login").trigger("reset");
+          window.location = "/location";
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  });
