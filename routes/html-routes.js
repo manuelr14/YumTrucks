@@ -54,13 +54,16 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/trucks.html"));
   });
 
-  app.get("/results", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/results.html"));
+  app.get("/result", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/result.html"));
     });
 
   app.get("/location", function (req, res) {
     res.sendFile(path.join(__dirname, `../public/location.html`));
     });
+    app.get("/search", function (req, res) {
+      res.sendFile(path.join(__dirname, `../public/search.html`));
+      });
 };
 
 function isTruckOwner(user) {
