@@ -15,23 +15,44 @@ module.exports = function (app) {
     });
   });
 
-app.get("/api/:id?", (req, res) => {
-  if (req.params.id) {
+app.get("/api/:truck_name?", (req, res) => {
+  if (req.params.truck_name) {
     // Display the JSON for ONLY that character.
     // (Note how we're using the ORM here to run our searches)
-    User.findOne({
+    db.User.findOne({
       where: {
-        id: req.params.id
+        truck_name: req.params.truck_name
       }
     }).then(function (result) {
+      // res.redirect("/location");
       return res.json(result);
     });
   } else {
-    Truck.findAll().then(function (result) {
+    db.User.findAll().then(function (result) {
       return res.json(result);
     });
   }
 });
+
+
+// app.get("/api/:characters?", (req, res) => {
+//   if (req.params.characters) {
+//     // Display the JSON for ONLY that character.
+//     // (Note how we're using the ORM here to run our searches)
+//     Character.findOne({
+//       where: {
+//         routeName: req.params.characters
+//       }
+//     }).then(function(result) {
+//       return res.json(result);
+//     });
+//   } else {
+//     Character.findAll().then(function(result) {
+//       return res.json(result);
+//     });
+//   }
+// });
+
 
 app.put("/api/updateUser", (req, res) => {
   console.log(req.body);
@@ -47,6 +68,26 @@ app.put("/api/updateUser", (req, res) => {
     }
   }).then(function(results) {
     res.json(results);
+  });
+});
+
+app.get("/api/trucks_data", function(req,res){
+  console.log(req.body);
+  console.log(req.user);
+
+  db.User.findAll({
+    where: {
+      type: req.body.type,
+      city: req.body.city
+
+    }
+  }).then(function(results){
+    // res.json(
+    // email: req.user.email,
+    // id: req.user.id);
+   
+    res.json(results);
+    console.log(results);
   });
 });
 
