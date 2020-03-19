@@ -4,6 +4,9 @@ var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
   let User = sequelize.define("User", {
+    type: {
+      type: DataTypes.STRING
+    },
     // The email cannot be null, and must be a proper email before creation
     email: {
       type: DataTypes.STRING,
@@ -19,38 +22,42 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     first_name: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.STRING
     },
     last_name: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.STRING
     },
     avatar: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.STRING
     },
     street: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.STRING
     },
     city: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.STRING
     },
     state: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.STRING
     },
     favorite: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: true
     },
     zip: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
+      type: DataTypes.INTEGER
     },
-
+    truck_name: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    menu: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    website: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   });
 
   // Creating a custom method for our Truck model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
@@ -63,6 +70,5 @@ module.exports = function(sequelize, DataTypes) {
   User.addHook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
-
   return User;
 };

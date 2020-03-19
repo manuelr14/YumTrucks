@@ -26,7 +26,7 @@
   </nav>
 
   <div class="container">
-    <span><img class="responsive-img" src="../public/images/healthyeating.jpg"></span>
+    <span><img class="responsive-img" src="images/healthyeating.jpg"></span>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h2>Welcome!<span class="member-name"></span></h2>
@@ -56,18 +56,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/signup.js"></script>
-  <script>
-    $(function() {
-      $("#searchBtn").on("click", function() {
-        let city = $("#truckCity").val();
-        if (city.length) {
-          $.get(`/api/search/${city}`)
-        } else {
-          alert("You must type a city!");
-        }
-      })
-    })
-  </script>
+  <script type="text/javascript" src="js/search.js"></script>
 </body>
 </html>

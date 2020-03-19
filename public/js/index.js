@@ -28,15 +28,14 @@ $(document).ready(function() {
   
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(email, password) {
-      //determine wether 
-      var url = isTruck ? "/api/trucks/login" : "/api/login";
-      $.post(url, {
+      $.post("/api/login", {
         email: email,
         password: password
       })
-        .then(function() {
+        .then(function(res) {
           ///if isTruck
-          window.location.replace("/users");
+          // window.location.replace("/users");
+          window.location = "/location";
 
          //else
          //redirect to /trucks instead 
@@ -48,37 +47,3 @@ $(document).ready(function() {
         });
     }
   });  
-
-
-  $("#submit").on("click", function (event) {
-    event.preventDefault(); 
-    
-    let regType = $("#reg-type").val();
-  
-    let userLogin = {
-      username: $("#email").val().trim(),
-      password: $("#password").val().trim(),
-    };
-  
-    if (regType === "user") {
-      $.post("/api/login/user", userLogin) 
-        .then(data => {
-          console.log(data);
-          $(".login").trigger("reset");
-          window.location = "/location";
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else if (regType === "truck") {
-      $.post("/api/login/truck", userLogin) 
-        .then(data => {
-          console.log(data);
-          $(".login").trigger("reset");
-          window.location = "/location";
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  });

@@ -6,11 +6,12 @@ $(document).ready(function () {
 
 $("#submit").on("click", function (event) {
   event.preventDefault();
-  const regType = M.FormSelect.getInstance($("#reg-type")).el.value;
+  const type = M.FormSelect.getInstance($("#reg-type")).el.value;
 
-  let favorite = $("#favorite").val();
+  const favorite = $("#favorite").val();
 
   let newEntity = {
+    type,
     first_name: $("#first-name").val().trim(),
     last_name: $("#last-name").val().trim(),
     email: $("#email").val().trim(),
@@ -19,35 +20,22 @@ $("#submit").on("click", function (event) {
     city: $("#city").val().trim(),
     state: $("#state").val().trim(),
     zip: $("#zip").val().trim(),
-    favorite: favorite, 
+    favorite, 
     avatar: $("#avatar-url").val().trim(),
     truck_name: $("#truck-name").val().trim() || "",
     menu: $("#menu-url").val().trim() || "",
     website: $("#website-url").val().trim() || ""
   };
 
-  if (regType === "user") {
-    $.post("/api/new/user", newEntity) 
-      .then(data => {
-        console.log(data);
-        $("#reg-form").trigger("reset");
-        window.location = "/location";
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  } else if (regType === "truck") {
-    $.post("/api/new/truck", newEntity) 
-      .then(data => {
-        console.log(data);
-        $("#reg-form").trigger("reset");
-        window.location = "/location";
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
+  $.post("/api/new/user", newEntity) 
+    .then(data => {
+      console.log(data);
+      $("#reg-form").trigger("reset");
+      window.location = "/";
+    })
+    .catch(error => {
+      console.log(error);
+    });
 });
 
 function applyHiddenClasses(e) {

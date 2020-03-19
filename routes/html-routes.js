@@ -40,8 +40,14 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/users.html"));
   });
 
-  app.get("/users", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/users.html"));
+  app.get("/routeUser", isAuthenticated, function (req, res) {
+    if (req.user.type === "user") {
+      res.redirect("/trucks");
+    } else if (req.user.type === "truck") {
+      res.redirect("/users");
+    } else {
+      res.redirect("/");
+    }
   });
 
   app.get("/trucks", function (req, res) {
@@ -53,7 +59,7 @@ module.exports = function (app) {
     });
 
   app.get("/location", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/location.html"));
+    res.sendFile(path.join(__dirname, `../public/location.html`));
     });
 };
 
