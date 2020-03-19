@@ -3,8 +3,12 @@ form.login {
   margin-top: 50px;
 }
 
-.navbar-header {
+/* .navbar-header {
   font-size: x-large;
+} */
+
+.brand-logo {
+  margin-left: 10px;
 }
 
 label {
@@ -13,6 +17,10 @@ label {
 
 input {
   color: black;
+}
+
+.responsive-img {
+  margin-top: 15px;
 }
 
 #search {
@@ -29,8 +37,23 @@ input {
   /* margin-bottom: 1000px; */
 }
 
+h1 {
+  font-size: 12pt;
+}
+
 h2 {
   text-align: center;
+  font-size: 16pt;
+}
+
+h3 {
+  text-align: center;
+  font-size: 14pt;
+}
+
+h4 {
+  text-align: center;
+  font-size: 14pt;
 }
 
 #restart {
