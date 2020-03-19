@@ -9,55 +9,11 @@ module.exports = function (app) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
+      type: req.user.type,
       email: req.user.email,
       id: req.user.id
     });
   });
-
-  //we need a route identical to the one above that has "/api/trucks/login" as the url
-  app.post("/api/trucks/login", passport.authenticate("trucks-local"), function (req, res) {
-    // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
-      email: req.user.email,
-      id: req.user.id
-    });
-  });
-
-  app.get("/api/:truck?", (req, res) => {
-    if (req.params.truck) {
-      // Display the JSON for ONLY that character.
-      // (Note how we're using the ORM here to run our searches)
-      Truck.findOne({
-        where: {
-          truck_name: req.params.truck
-        }
-      }).then(function (result) {
-        return res.json(result);
-      });
-    } else {
-      Truck.findAll().then(function (result) {
-        return res.json(result);
-      });
-    }
-  });
-
-  app.put("/api/:truck?", (req, res) => {
-
-    db.Truck.update({
-      street: req.body.street,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip,
-    }, {
-      where: {
-        truck_name: req.params.truck
-      }
-    }).then(function(results) {
-      res.json(results);
-    });
-  });
-
-
 
 app.get("/api/:id?", (req, res) => {
   if (req.params.id) {
@@ -77,8 +33,9 @@ app.get("/api/:id?", (req, res) => {
   }
 });
 
-app.put("/api/:id?", (req, res) => {
-
+app.put("/api/updateUser", (req, res) => {
+  console.log(req.body);
+  console.log(req.user);
   db.User.update({
     street: req.body.street,
     city: req.body.city,
@@ -86,32 +43,12 @@ app.put("/api/:id?", (req, res) => {
     zip: req.body.zip,
   }, {
     where: {
-      id: req.params.id
+      id: req.user.id
     }
   }).then(function(results) {
     res.json(results);
   });
 });
-
-
-
-
-
-  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-  // otherwise send back an error
-  app.post("/api/signup", function (req, res) {
-    db.User.create({
-      email: req.body.email,
-      password: req.body.password
-    })
-      .then(function () {
-        res.redirect(307, "/api/login");
-      })
-      .catch(function (err) {
-        res.status(401).json(err);
-      });
-  });
 
   // Route for logging user out
   app.get("/logout", function (req, res) {
@@ -121,9 +58,8 @@ app.put("/api/:id?", (req, res) => {
 
 
   app.post("/api/new/user", (req, res) => {
-    console.log(req.body);
-
     db.User.create({
+      type: req.body.type,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
@@ -132,29 +68,11 @@ app.put("/api/:id?", (req, res) => {
       city: req.body.city,
       state: req.body.state,
       zip: req.body.zip,
-      favorite: req.body.favorite,
-      avatar: req.body.avatar
-    }).then(function (){
-      res.end();
-    });
-  });
-
-  app.post("/api/new/truck", (req, res) => {
-    console.log(req.body);
-    db.Truck.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      password: req.body.password,
-      street: req.body.street,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip,
-      favorite: req.body.favorite,
-      truck_name: req.body.truck_name,
+      favorite: req.body.favorite || "",
       avatar: req.body.avatar,
-      menu: req.body.menu,
-      website: req.body.website
+      truck_name: req.body.truck_name || "",
+      menu: req.body.menu || "",
+      website: req.body.website || ""
     }).then(function (){
       res.end();
     });
@@ -163,11 +81,8 @@ app.put("/api/:id?", (req, res) => {
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
     if (!req.user) {
-      // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
         id: req.user.id
