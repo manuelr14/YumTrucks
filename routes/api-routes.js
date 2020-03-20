@@ -11,85 +11,77 @@ module.exports = function (app) {
     res.json({
       type: req.user.type,
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
+      city: req.user.city,
+      favorite: req.user.favorite
     });
   });
 
-app.get("/api/:truck_name?", (req, res) => {
-  if (req.params.truck_name) {
-    // Display the JSON for ONLY that character.
-    // (Note how we're using the ORM here to run our searches)
-    db.User.findOne({
+  app.get("/api/trucks/:truck_name?", (req, res) => {
+    console.log(req.user);
+    console.log("hit this route instead")
+    if (req.params.truck_name) {
+      // Display the JSON for ONLY that character.
+      // (Note how we're using the ORM here to run our searches)
+      db.User.findOne({
+        where: {
+          truck_name: req.params.truck_name,
+          type: "truck"
+        }
+      }).then(function (result) {
+        // res.redirect("/location");
+        return res.json(result);
+      });
+    } else {
+      db.User.findAll({
+        where: {
+          type: "truck",
+          city : req.user.city
+        }
+      }).then(function (result) {
+        return res.json(result);
+      })
+      .catch(err => res.json(err));
+    }
+  });
+  
+  app.get("/api/trucks/favorites", (req, res) => {
+    console.log("route hit!");
+    // console.log(req.body);
+    //  console.log("aqui");
+  
+    db.User.findAll({
       where: {
-        truck_name: req.params.truck_name
+        type: "truck",
+        favorite : req.user.favorite
       }
-    }).then(function (result) {
-      // res.redirect("/location");
-      return res.json(result);
-    });
-  } else {
-    db.User.findAll().then(function (result) {
-      return res.json(result);
-    });
-  }
-});
 
-
-// app.get("/api/:characters?", (req, res) => {
-//   if (req.params.characters) {
-//     // Display the JSON for ONLY that character.
-//     // (Note how we're using the ORM here to run our searches)
-//     Character.findOne({
-//       where: {
-//         routeName: req.params.characters
-//       }
-//     }).then(function(result) {
-//       return res.json(result);
-//     });
-//   } else {
-//     Character.findAll().then(function(result) {
-//       return res.json(result);
-//     });
-//   }
-// });
-
-
-app.put("/api/updateUser", (req, res) => {
-  console.log(req.body);
-  console.log(req.user);
-  db.User.update({
-    street: req.body.street,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-  }, {
-    where: {
-      id: req.user.id
-    }
-  }).then(function(results) {
-    res.json(results);
+    })
+      .then(function(dbPost) {
+        console.log("dbPost", dbPost);
+      res.json(dbPost);
+      })
+      .catch(err => res.json(err));
   });
-});
 
-app.get("/api/trucks_data", function(req,res){
-  console.log(req.body);
-  console.log(req.user);
-
-  db.User.findAll({
-    where: {
-      type: req.body.type,
-      city: req.body.city
-
-    }
-  }).then(function(results){
-    // res.json(
-    // email: req.user.email,
-    // id: req.user.id);
-   
-    res.json(results);
-    console.log(results);
+  app.put("/api/updateUser", (req, res) => {
+    console.log(req.body);
+    console.log(req.user);
+    db.User.update({
+      street: req.body.street,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip,
+    }, {
+      where: {
+        id: req.user.id
+      }
+    }).then(function (results) {
+      res.json(results);
+    });
   });
-});
+
+
 
   // Route for logging user out
   app.get("/logout", function (req, res) {
@@ -114,7 +106,7 @@ app.get("/api/trucks_data", function(req,res){
       truck_name: req.body.truck_name || "",
       menu: req.body.menu || "",
       website: req.body.website || ""
-    }).then(function (){
+    }).then(function () {
       res.end();
     });
   });
