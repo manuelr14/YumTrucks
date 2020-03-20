@@ -36,90 +36,104 @@ module.exports = function (app) {
       db.User.findAll({
         where: {
           type: "truck",
-          city : req.user.city
+          city: req.user.city
         }
       }).then(function (result) {
         return res.json(result);
       })
-      .catch(err => res.json(err));
+        .catch(err => res.json(err));
     }
   });
-  
-  app.get("/api/trucks/favorites", (req, res) => {
-    console.log("route hit!");
-    // console.log(req.body);
-    //  console.log("aqui");
-  
+
+  app.get("/api/alltrucks", (req, res)=> {
+    console.log("hitting all trucks route!");
     db.User.findAll({
       where: {
-        type: "truck",
-        favorite : req.user.favorite
+        type: "truck"
       }
-
+    }).then(function (result) {
+      return res.json(result);
     })
-      .then(function(dbPost) {
-        console.log("dbPost", dbPost);
-      res.json(dbPost);
-      })
       .catch(err => res.json(err));
+  
+
   });
 
-  app.put("/api/updateUser", (req, res) => {
-    console.log(req.body);
-    console.log(req.user);
-    db.User.update({
-      street: req.body.street,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip,
-    }, {
-      where: {
-        id: req.user.id
-      }
-    }).then(function (results) {
-      res.json(results);
-    });
-  });
+app.get("/api/trucks/favorites", (req, res) => {
+  console.log("route hit!");
+  // console.log(req.body);
+  //  console.log("aqui");
 
-
-
-  // Route for logging user out
-  app.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
-  });
-
-
-  app.post("/api/new/user", (req, res) => {
-    db.User.create({
-      type: req.body.type,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      password: req.body.password,
-      street: req.body.street,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip,
-      favorite: req.body.favorite || "",
-      avatar: req.body.avatar,
-      truck_name: req.body.truck_name || "",
-      menu: req.body.menu || "",
-      website: req.body.website || ""
-    }).then(function () {
-      res.end();
-    });
-  });
-
-  // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function (req, res) {
-    if (!req.user) {
-      res.json({});
-    } else {
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
+  db.User.findAll({
+    where: {
+      type: "truck",
+      favorite: req.user.favorite
     }
+
+  })
+    .then(function (dbPost) {
+      console.log("dbPost", dbPost);
+      res.json(dbPost);
+    })
+    .catch(err => res.json(err));
+});
+
+app.put("/api/updateUser", (req, res) => {
+  console.log(req.body);
+  console.log(req.user);
+  db.User.update({
+    street: req.body.street,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+  }, {
+    where: {
+      id: req.user.id
+    }
+  }).then(function (results) {
+    res.json(results);
   });
+});
+
+
+
+// Route for logging user out
+app.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/");
+});
+
+
+app.post("/api/new/user", (req, res) => {
+  db.User.create({
+    type: req.body.type,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    password: req.body.password,
+    street: req.body.street,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    favorite: req.body.favorite || "",
+    avatar: req.body.avatar,
+    truck_name: req.body.truck_name || "",
+    menu: req.body.menu || "",
+    website: req.body.website || ""
+  }).then(function () {
+    res.end();
+  });
+});
+
+// Route for getting some data about our user to be used client side
+app.get("/api/user_data", function (req, res) {
+  if (!req.user) {
+    res.json({});
+  } else {
+    res.json({
+      email: req.user.email,
+      id: req.user.id
+    });
+  }
+});
 };
