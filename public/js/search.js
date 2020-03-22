@@ -14,7 +14,7 @@ $(document).ready(function () {
 
       searchedTruck1 = searchedTruck.replace(/\s+/g, "").toLowerCase();
       console.log(searchedTruck1);
-      $.get("/api/" + searchedTruck1, data => {
+      $.get("/api/trucks/" + searchedTruck1, data => {
 
         console.log(data);
 
