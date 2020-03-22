@@ -13,21 +13,53 @@ $(document).ready(function() {
     // This file just does a the JS for the trucks page to figure out what information gets populated in what areas
     // and updates the HTML on the page
     $.get("/api/trucks").then(function(data) {
-      generateTruckCards(data);
-      //$(".truck-name").text(data.email);
+      console.log(data);
+      getTruck(data);
+  
 
     });
   });
 
-//function getInfo() {
-  //axios.get("/api/trucks") {
 
-  //}
-//}
+function getTruck(data) {
+console.log(data);
 
-//function favoriteTrucks {
+$("#trucks-info").empty();
 
-//}
+  for (let i = 0; i < data.length; i++) {
+    // create a parent div for the oncoming elements
+    let infoSection = $("<div>");
+
+    infoSection.addClass("card-panel cyan");
+
+    infoSection.attr("id", "info-"+i);
+
+    $("#trucks-info").append(infoSection);
+
+  
+
+
+
+      $("#info-"+i).append("<h2>" + data[i].truck_name + "</h2>");
+
+      $("#info-"+i).append('<h4>Location: <a href="https://www.google.com/maps/place/' + data[i].street + ", " + data[i].city + ", " + data[i].state + ", " + data[i].zip + '"target="_blank"> ' + data[i].street + ", " + data[i].city + ", " + data[i].state + ", " + data[i].zip + '</a> </h4>');
+
+      $("#info-"+i).append('<h4>Menu: <a href="' + data[i].menu + '" target="_blank">' + data[i].menu+'</a> </h4>');
+
+      $("#info-"+i).append('<h4>Website: <a href="' + data[i].website + '"target="_blank"> ' + data[i].website + '</a> </h4>');
+
+
+
+
+
+     }
+
+
+
+};
+
+
+
 
 function generateTruckCards(data) {
       data.forEach(truck => {
@@ -68,4 +100,4 @@ function generateTruckCards(data) {
 //     </div>
 // </div>
 
-module.exports = generateTruckCards;
+// module.exports = generateTruckCards();
