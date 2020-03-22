@@ -25,39 +25,7 @@
   </nav>
 
   <div class="container">
-
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <div class="modal-content" style="color:black">
-        <img id="tImage-0" class="float" src="https://www.fillmurray.com/200/300">
-
-        <h5 id="tName-0">Truck Name</h5>
-
-        <h6 id="tAvatar-0"></h6>
-        <h6 id="tMenu-0">Menu:</h6>
-        <h6 id="tLocation-0">Location:</h6>
-
-      </div>
-
-      <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
-    </div>
-    <!-- Modal Structure -->
-
-    <div id="#trucks-container" class="row" class="valign-wrapper">
-      <div class="truck-card col s12 m6 l3" data-name='${truck.name}'>
-        <div class="card-panel cyan">
-            <h6>${truck.truck_name}</h6>
-            <div class="card-image center-align">
-              <img class="responsive-img" width="200px" src="${truck.avatar}">
-            </div>
-              <a href="${truck.website}">Website:</a>
-          <br />
-        </div>
-      </div>
-
-    </div>
+    <div id="trucks-container" class="row" class="valign-wrapper"></div>
   </div>
 
   <div id="space"></div>
@@ -73,5 +41,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="text/javascript" src="js/login.js"></script>
+  <script src="js/trucks.js"></script>
 </body>
 </html>
