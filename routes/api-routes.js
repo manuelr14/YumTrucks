@@ -45,6 +45,34 @@ module.exports = function (app) {
     }
   });
 
+  app.get("/api/users/:id?", (req, res) => {
+    console.log(req.user);
+    console.log("hit this user route")
+    if (req.params.truck_name) {
+      // Display the JSON for ONLY that character.
+      // (Note how we're using the ORM here to run our searches)
+      db.User.findOne({
+        where: {
+          id: req.params.id,
+          type: "user"
+        }
+      }).then(function (result) {
+        // res.redirect("/location");
+        return res.json(result);
+      });
+    } else {
+      db.User.findAll({
+        where: {
+          type: "user",
+          city: req.user.city
+        }
+      }).then(function (result) {
+        return res.json(result);
+      })
+        .catch(err => res.json(err));
+    }
+  });
+
   app.get("/api/alltrucks", (req, res)=> {
     console.log("hitting all trucks route!");
     db.User.findAll({
