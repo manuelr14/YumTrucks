@@ -95,14 +95,11 @@ app.put("/api/updateUser", (req, res) => {
   });
 });
 
-
-
 // Route for logging user out
 app.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
-
 
 app.post("/api/new/user", (req, res) => {
   db.User.create({

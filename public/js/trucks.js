@@ -12,12 +12,11 @@ const color = {
 $(document).ready(function() {
     // This file just does a the JS for the trucks page to figure out what information gets populated in what areas
     // and updates the HTML on the page
-    $.get("/api/trucks").then(function(data) {
-      generateTruckCards(data);
-      //$(".truck-name").text(data.email);
-
+      $.get("/api/trucks").then(function(data) {
+        generateTruckCards(data);
+      });
     });
-  });
+  
 
 //function getInfo() {
   //axios.get("/api/trucks") {
@@ -32,40 +31,57 @@ $(document).ready(function() {
 function generateTruckCards(data) {
       data.forEach(truck => {
         $("#trucks-container").append(
-          //TODO 
-          //1. write a click event targeting the "truck-card" class (different func)
-          //2. use our data-name attribute to call our /api/trucks/<truck_name> route
-          //3. use the truck info we get from that to populate values into the modal
-          `<div class="truck-card col s12 m6 l3" data-name='${truck.name}'>
+          `<div id='${truck.id}' class="truck-card col s12 m6 l3" data-name='${truck.name}'>
             <div class="card-panel cyan">
                 <h2>${truck.truck_name}</h2>
                 <div class="card-image center-align">
                   <img class="responsive-img" width="200px" src="${truck.avatar}">
                 </div>
-                  <a href="${truck.website}">Website:</a>
+                  <a href="${truck.website}">Website: ${truck.website}</a>
               <br />
             </div>
           </div>`     
         )
+        generateModal(truck); // Adds the modal
       })
+      activateCards();  // Add the on click handler to the truck cards in order to show the modal
 }
 
-// <!-- Modal Structure -->
-// <div id="modal1" class="modal">
-//     <div class="modal-content" style= "color:black">
-//         <img id="tImage-0" class="float" src="https://www.fillmurray.com/200/300">
-        
-//         <h5 id="tName-0">Truck Name</h5>
-    
-//         <h6 id="tAvatar-0" ></h6>
-//         <h6 id="tMenu-0" >Menu:</h6>
-//         <h6 id="tLocation-0" >Location:</h6>
+function generateModal(truck) {
+  let doc = $('body');
+  $(doc).append(
+  // Modal Structure
+  `<div id="modal${truck.id}" class="modal">
+    <div class="modal-content" style= "color:black">
 
-//     </div>
+      <h5 id="tName-${truck.id}">${truck.name}</h5>
+ 
+      <h6 id="tAvatar-${truck.id}">${truck.avatar}</h6>
+      <h6 id="tMenu-${truck.id}">Menu: ${truck.menu}</h6>
+      <h6 id="tLocation-${truck.id}">Location:${truck.city}</h6>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>`
+  )
+  activateModals();
+}
 
-//     <div class="modal-footer">
-//         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-//     </div>
-// </div>
+function activateCards() {
+  let truckCards = $(".truck-card");
+  $.each(truckCards, function (i, card) {
+  $(card).off().on("click", function() {
+  let truckID = $(this).attr("id");
+  let currentTruckModal = $("#modal" + truckID);
+  $(currentTruckModal).show();
+}
 
-module.exports = generateTruckCards;
+function activateModals(){
+  let modals = $('.modal');  // select all modals
+  $.each(modals, function(i, modal){ // loop over each one
+    $('.modal-close', modal).off().on('click', function() { // add an on click event handler to the 'close' button.  the $('.modal-close', modal) means, select the element with the class: 'modal-close', inside the current modal
+      $(modal).hide(); // hide the modal again
+    })
+  })
+}
