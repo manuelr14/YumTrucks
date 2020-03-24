@@ -29,6 +29,7 @@ $(document).ready(function() {
 //}
 
 function generateTruckCards(data) {
+
       data.forEach(truck => {
         $("#trucks-container").append(
           `<div id='${truck.id}' class="truck-card col s12 m6 l3" data-name='${truck.name}'>
@@ -37,6 +38,7 @@ function generateTruckCards(data) {
                 <div class="card-image center-align">
                   <img class="responsive-img" width="200px" src="${truck.avatar}">
                 </div>
+                <span id="{truck.id}" class="hearts" data-userid={user.id}><i class="far fa-heart"></i></span>
                   <a href="${truck.website}">Website: ${truck.website}</a>
               <br />
             </div>
@@ -57,6 +59,7 @@ function generateModal(truck) {
       <h5 id="tName-${truck.id}">${truck.name}</h5>
  
       <h6 id="tAvatar-${truck.id}">${truck.avatar}</h6>
+      <span id="{truck.id}" class="hearts" data-userid={user.id}><i class="far fa-heart"></i></span>
       <h6 id="tMenu-${truck.id}">Menu: ${truck.menu}</h6>
       <h6 id="tLocation-${truck.id}">Location:${truck.city}</h6>
     </div>
