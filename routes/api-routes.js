@@ -113,10 +113,10 @@ app.post("/api/trucks/favorite", (req, res) => {
     $(heart).on("click", function() {
       let newFav = $(this).attr(id);  // this is the userid of the truck, 
       let userId = $(this).data('userid');   // this is the id of the current user who logged in
-      $.ajax('/api/trucks/favorite, {
+      $.ajax('/api/trucks/favorite', {
          method: 'post',
          data: {newFav: newFav, userId: userId
-       }).then(function(data){
+       }}).then(function(data){
             //do something.
        })
       });
