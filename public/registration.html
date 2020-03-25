@@ -5,31 +5,38 @@
     <title>Registration</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="stylesheets/style.css" rel="stylesheet">
-    <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="./images/foodtruck.jpg">
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper grey">
-          <a href="/index.html" class="brand-logo"><i class="material-icons">fastfood</i>YumTrucks</a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="/search"><i class="material-icons">search</i></a></li>
-            <li><a href="/location"><i class="material-icons">location_on</i></a></li>
-            <li><a href="/logout"><i class="material-icons">exit_to_app</i></a></li>
-          </ul>
-        </div>
-      </nav>
+    <div class="topnav">
+        <nav>
+            <div class="nav-wrapper green lighten-1">
+                <a href="/index.html" class="brand-logo"><i class="material-icons">fastfood</i>YumTrucks</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="/search"><i class="material-icons">search</i></a></li>
+                        <li><a href="/location"><i class="material-icons">location_on</i></a></li>
+                        <li><a href="/logout"><i class="material-icons">exit_to_app</i></a></li>
+                    </ul>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="/search">Search</a></li>
+            <li><a href="/location">Change Location</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
 
     <div class="container">
-        <span><img class="responsive-img" src="images/healthyeating.jpg"></span>
+        <span><img class="responsive-img" src="images/TruckBanner.png"></span>
         <div class="row">
             <div class="col-sm-12">
-                <div class="card-panel amber">
+                <div class="card-panel orange lighten-2">
                     <div class="row">
                         <form class="col-sm-12" id="reg-form">
                             <div class="row">
@@ -44,31 +51,29 @@
                                 <div class="input-field col s6 user-field">
                                     <select id="favorite">
                                         <option value="" disabled selected>Trucks:</option>
-                                        <!-- <option value="${all_trucks[1]}"></option>
-                                        <option value="2">Waffle House</option> -->
                                     </select>
                                     <label>My Favorite Truck</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input id="first-name" type="text" class="validate">
+                                    <input id="first-name" type="search" class="validate form-control mr-sm-2">
                                     <label for="first-name">First Name</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="last-name" type="text" class="validate">
+                                    <input id="last-name" type="search" class="validate">
                                     <label for="last-name">Last Name</label>
                                 </div>
                             </div>
                             <div class="row truck-field">
                                 <div class="input-field col s12">
-                                    <input id="truck-name" type="text" class="validate">
+                                    <input id="truck-name" type="search" class="validate">
                                     <label for="truck-name">Truck Name</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input id="email" type="text" class="validate">
+                                    <input id="email" type="search" class="validate">
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="input-field col s6">
@@ -78,44 +83,44 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="street" type="text" class="validate">
+                                    <input id="street" type="search" class="validate">
                                     <label for="street">Street</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s4">
-                                    <input id="city" type="text" class="validate">
+                                    <input id="city" type="search" class="validate">
                                     <label for="city">City</label>
                                 </div>
                                 <div class="input-field col s4">
-                                    <input id="state" type="text" class="validate">
+                                    <input id="state" type="search" class="validate">
                                     <label for="state">State</label>
                                 </div>
                                 <div class="input-field col s4">
-                                    <input id="zip" type="text" class="validate">
+                                    <input id="zip" type="search" class="validate">
                                     <label for="zip">Zip Code</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="avatar-url" type="text" class="validate">
+                                    <input id="avatar-url" type="search" class="validate">
                                     <label for="avatar-url">Avatar URL</label>
                                 </div>
                             </div>
                             <div class="truck-field row">
                                 <div class="input-field col s12">
-                                    <input id="menu-url" type="text" class="validate">
+                                    <input id="menu-url" type="search" class="validate">
                                     <label for="menu-url">Menu URL</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="website-url" type="text" class="validate">
+                                    <input id="website-url" type="search" class="validate">
                                     <label for="website-url">Website URL</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s2 offset-s10">
-                                    <button class="btn waves-effect waves-light cyan"
-                                        type="submit" id="submit" name="action">Submit
+                                    <button class="btn waves-effect waves-light green lighten-1" type="submit"
+                                        id="submit" name="action">Submit
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>
@@ -125,9 +130,18 @@
                 </div>
             </div>
         </div>
+</div>
+<div id="space"></div>
+<footer class="page-footer green lighten-1">
+    <div class="footer-copyright">
+        <div class="container" class="grey-text text-lighten-4 right">
+            The Premium Lions 2020 ©
+        </div>
+    </div>
+</footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="js/registration.js" type="text/javascript" ></script>
+        <script src="js/registration.js" type="text/javascript"></script>
 
 </body>
 
