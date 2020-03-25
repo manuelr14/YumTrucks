@@ -75,6 +75,7 @@ module.exports = function (app) {
       .catch(err => res.json(err));
   });
 
+<<<<<<< HEAD
   app.post("/api/trucks/favorite", (req, res) => {
     // 1. get the fav truck they sent over, get the param from the request
     // 2. get the current list of favorites of the user, get user id from the request as well, query the db for the user based on id
@@ -93,6 +94,24 @@ module.exports = function (app) {
         }).then(function (data) {
           //do something.
         })
+=======
+app.post("/api/trucks/favorite", (req, res) => {
+  // 1. get the fav truck they sent over, get the param from the request
+  // 2. get the current list of favorites of the user, get user id from the request as well, query the db for the user based on id
+  // 3. update the current list with the new value, turn the user's favs into an array, add the new value, convert back to string
+  // 4. save the updated list to the user, UPDATE user SET favorites = 'the new list' WHERE id = this user's id
+  let hearts = $('.heart');
+  $.each(hearts, function(i, heart) {
+    $(heart).on("click", function() {
+      let newFav = $(this).attr(id);  // this is the userid of the truck, 
+      let userId = $(this).data('userid');   // this is the id of the current user who logged in
+      $.ajax('/api/trucks/favorite', {
+         method: 'post',
+         data: {newFav: newFav, userId: userId
+       }}).then(function(data){
+            //do something.
+       })
+>>>>>>> master
       });
     })
 

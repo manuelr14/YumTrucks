@@ -16,18 +16,36 @@ $(document).ready(function () {
     generateTruckCards(data);
   });
 });
+<<<<<<< HEAD
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems, {});
 });
+=======
+
+
+//function getInfo() {
+//axios.get("/api/trucks") {
+
+//}
+//}
+
+//function favoriteTrucks {
+
+//}
+>>>>>>> master
 
 function generateTruckCards(data) {
 
   data.forEach(truck => {
     $("#trucks-container").append(
       `<div id='${truck.id}' class="truck-card col s12 m6 l3" data-name='${truck.name}'>
+<<<<<<< HEAD
             <div class="card-panel orange lighten-2">
+=======
+            <div class="card-panel cyan">
+>>>>>>> master
                 <h2>${truck.truck_name}</h2>
                 <div class="card-image center-align">
                   <img class="responsive-img" width="200px" src="${truck.avatar}">
@@ -71,8 +89,13 @@ function activateCards() {
       let truckID = $(this).attr("id");
       let currentTruckModal = $("#modal" + truckID);
       $(currentTruckModal).show();
+<<<<<<< HEAD
     })
   })
+=======
+    });
+  });
+>>>>>>> master
 }
 
 function activateModals() {
