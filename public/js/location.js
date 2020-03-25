@@ -1,5 +1,3 @@
-console.log(this);
-
 $("#submit").on("click", function (event) {
     event.preventDefault();
     const regType = window.regType;
@@ -25,5 +23,9 @@ $("#submit").on("click", function (event) {
         console.log(error);
       }
     });
-  }
-)
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {});
+  });
