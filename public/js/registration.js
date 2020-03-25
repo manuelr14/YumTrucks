@@ -3,6 +3,11 @@ $(document).ready(function () {
   applyHiddenClasses();
   $("#reg-type").on("change", (e) => { applyHiddenClasses(e); });
 
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {});
+  });
+
 
   $.get("/api/alltrucks", data => {
     let all_trucks = [];
